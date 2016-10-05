@@ -1,22 +1,22 @@
 # we are importing the sys module
 import sys 
-# we store the second argument we pass on the command line as a text file to the file_name 
-# variable. So we don't have to update this file with the text path
-# so on command line markov.py is argv[0] and any text file is argv[1]
-file_name = sys.argv[1]
+# we store the second and third argument we pass on the command line as a text files to the file_name 
+# and file_name2 variables. So we don't have to update this file with the text path
+# so on command line markov.py is argv[0] and any text files is argv[1] argv[2]
+file_name, file_name2 = sys.argv[1], sys.argv[2]     
 
 from random import choice
 
 
-
-def open_and_read_file(file_path):
-    """Takes file path as string; returns text as string.
-    Takes a string that is a file path, opens the file, and turns
+#changed the function the way we can pass two text files to it
+def open_and_read_file(file_name, file_name2):
+    """
+    Takes a string that is in each file, opens the files, and turns
     the file's contents as one string of text.
     """
 
     # Opens the entire file and stores it in the text variable
-    text = open(file_path).read()
+    text = open(file_name).read() + open(file_name2).read()
 
     return text 
 
@@ -76,10 +76,8 @@ def make_text(chains):
     return " ".join(text)
 
 
-input_path = file_name
-
 # Open the file and turn it into one long string
-input_text = open_and_read_file(input_path)
+input_text = open_and_read_file(file_name, file_name2)
 
 # Get a Markov chain
 chains = make_chains(input_text)
