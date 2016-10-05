@@ -1,4 +1,12 @@
+# we are importing the sys module
+import sys 
+# we store the second argument we pass on the command line as a text file to the file_name 
+# variable. So we don't have to update this file with the text path
+# so on command line markov.py is argv[0] and any text file is argv[1]
+file_name = sys.argv[1]
+
 from random import choice
+
 
 
 def open_and_read_file(file_path):
@@ -51,7 +59,7 @@ def make_text(chains):
     chains_key = choice(chains.keys())  
 
     # we are initializing text as a list and assigning the second value of chains_key
-    text = [chains_key[1]]
+    text = list(chains_key)
 
     # we check if the key we generated is in our dictionary 
     while chains_key in chains:
@@ -68,7 +76,7 @@ def make_text(chains):
     return " ".join(text)
 
 
-input_path = "green-eggs.txt"
+input_path = file_name
 
 # Open the file and turn it into one long string
 input_text = open_and_read_file(input_path)
