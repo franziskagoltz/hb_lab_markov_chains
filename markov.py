@@ -32,7 +32,7 @@ def make_chains(text_string):
     # your code goes here
     words = text_string.split()
 
-    for index in range(len(words)-3):
+    for index in range(len(words)-2):
         
         if chains.get((words[index], words[index+1])):
             chains[(words[index], words[index+1])].append(words[index+2])
@@ -46,14 +46,22 @@ def make_text(chains):
     """Takes dictionary of markov chains; returns random text."""
 
     text = ""
+    random_chains_key = choice(chains.keys())
+    print random_chains_key
+    # current_key = (random_chains_key[1], choice(chains[random_chains_key]))
+    # print current_key
 
-    for key in chains:
-        text += key[1] + " "
-        text += choice(chains[key]) + " "
-        # print type(key[1])
-        # print type(chains[key])
+    while True:
 
-    return text
+        new_key = (random_chains_key[1], choice(chains[random_chains_key]))    
+
+        random_chains_key = new_key
+
+        print new_key
+
+
+    
+    # print text
 
 
 input_path = "green-eggs.txt"
